@@ -183,8 +183,8 @@ class PageIterator(BaseIterator):
         self.current_page = 0
 
     def next(self):
-        if self.limit > 0:
-            if self.current_page > self.limit:
+        if int(self.limit) > 0:
+            if self.current_page > int(self.limit):
                 raise StopIteration
 
         items = self.method(page=self.current_page, *self.args, **self.kwargs)
@@ -232,8 +232,8 @@ class ItemIterator(BaseIterator):
         self.num_tweets = 0
 
     def next(self):
-        if self.limit > 0:
-            if self.num_tweets == self.limit:
+        if int(self.limit) > 0:
+            if self.num_tweets == int(self.limit):
                 raise StopIteration
         if self.current_page is None or self.page_index == len(self.current_page) - 1:
             # Reached end of current page, get the next page...
